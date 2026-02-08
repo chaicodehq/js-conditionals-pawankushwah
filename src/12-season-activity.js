@@ -27,9 +27,35 @@
  *   - If month is not 1–12, return null
  *
  * @param {number} month - Month of the year (1-12)
- * @param {number} temperature - Current temperature in Celsius
+ * @param {number} temp - Current temperature in Celsius
  * @returns {{ season: string, activity: string } | null}
  */
-export function getSeasonActivity(month, temperature) {
-  // Your code here
+export function getSeasonActivity(month, temp) {
+  if (month <= 0 || month > 12) return null;
+  const obj = { season: "", activity: "" };
+  switch (month) {
+    case 12: case 1: case 2:
+      obj.season = "Winter";
+      obj.activity = temp >= 0 ? "ice skating" : "skiing";
+      break;
+
+    case 3: case 4: case 5:
+      obj.season = "Spring";
+      obj.activity = temp > 20 ? "hiking" : "museum visit";
+      break;
+
+    case 6: case 7: case 8:
+      obj.season = "Summer";
+      obj.activity = temp > 35 ? "swimming" : "cycling";
+      break;
+
+    case 9: case 10: case 11:
+      obj.season = "Autumn";
+      obj.activity = temp > 15 ? "nature walk" : "reading at a cafe";
+      break;
+
+    default:
+      break;
+  }
+  return obj;
 }
